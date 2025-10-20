@@ -1,0 +1,175 @@
+:root {
+  --bg-light: #f0f0f0;
+  --text-light: #333;
+  --cell-bg-light: #b0bec5;
+  --cell-bg-hover-light: #90a4ae;
+  --cell-revealed-bg-light: #eceff1;
+
+  --bg-dark: #121212;
+  --text-dark: #eee;
+  --cell-bg-dark: #37474f;
+  --cell-bg-hover-dark: #455a64;
+  --cell-revealed-bg-dark: #546e7a;
+
+  --bomb-color: #e53935;
+  --flag-color: #ffeb3b;
+  --flag-text-color: #212121;
+
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  text-align: center;
+  margin: 20px;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+body.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+header {
+  margin-bottom: 15px;
+}
+
+#controls {
+  margin-bottom: 10px;
+}
+
+button, select {
+  font-size: 14px;
+  padding: 6px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover, select:hover {
+  background: #007bff;
+  color: white;
+}
+
+button:focus, select:focus {
+  outline: 2px solid #007bff;
+}
+
+#darkModeToggle {
+  background: #444;
+  color: white;
+}
+
+body.dark #darkModeToggle {
+  background: #eee;
+  color: #121212;
+}
+
+#status {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+#game {
+  display: grid;
+  gap: 4px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: background-color 0.5s;
+}
+
+body.dark #game {
+  background: #263238;
+}
+
+.cell {
+  width: 32px;
+  height: 32px;
+  background: var(--cell-bg-light);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  user-select: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  color: inherit;
+}
+
+body.dark .cell {
+  background: var(--cell-bg-dark);
+  color: var(--text-dark);
+}
+
+.cell:hover {
+  background: var(--cell-bg-hover-light);
+  transform: scale(1.05);
+}
+
+body.dark .cell:hover {
+  background: var(--cell-bg-hover-dark);
+}
+
+.cell.revealed {
+  background: var(--cell-revealed-bg-light);
+  cursor: default;
+  animation: fadeIn 0.3s ease-out;
+  color: inherit;
+}
+
+body.dark .cell.revealed {
+  background: var(--cell-revealed-bg-dark);
+}
+
+.cell.bomb {
+  background: var(--bomb-color);
+  color: white;
+  font-weight: bold;
+  animation: shake 0.5s ease-in-out;
+}
+
+.cell.flagged {
+  background: var(--flag-color);
+  color: var(--flag-text-color);
+  font-weight: bold;
+  animation: popIn 0.3s ease-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shake {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Number colors */
+.cell.revealed[data-value="1"] { color: #2196f3; }
+.cell.revealed[data-value="2"] { color: #4caf50; }
+.cell.revealed[data-value="3"] { color: #f44336; }
+.cell.revealed[data-value="4"] { color: #3f51b5; }
+.cell.revealed[data-value="5"] { color: #795548; }
+.cell.revealed[data-value="6"] { color: #009688; }
+.cell.revealed[data-value="7"] { color: #000000; }
+.cell.revealed[data-value="8"] { color: #607d8b; }

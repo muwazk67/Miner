@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Minesweeper Enhanced</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Minesweeper Enhanced</h1>
+    <div id="controls">
+      <button id="resetBtn">Reset Game</button>
+
+      <label for="difficulty">Difficulty:</label>
+      <select id="difficulty">
+        <option value="easy">Easy (8x8, 10 bombs)</option>
+        <option value="medium" selected>Medium (10x10, 15 bombs)</option>
+        <option value="hard">Hard (15x15, 40 bombs)</option>
+      </select>
+
+      <button id="darkModeToggle">Dark Mode</button>
+    </div>
+
+    <div id="status">
+      <span>Time: <span id="timer">0</span>s</span>
+    </div>
+  </header>
+
+  <main>
+    <div id="game"></div>
+  </main>
+
+  <audio id="soundClick" src="https://freesound.org/data/previews/256/256113_3263906-lq.mp3"></audio>
+  <audio id="soundFlag" src="https://freesound.org/data/previews/59/59988_634166-lq.mp3"></audio>
+  <audio id="soundBomb" src="https://freesound.org/data/previews/41/41555_512123-lq.mp3"></audio>
+
+  <script src="app.js"></script>
+</body>
+</html>
